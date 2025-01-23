@@ -53,7 +53,56 @@
       ==> 단일쿼리시 크롤링 가능
 
    4. 주식예측
+
+2025.01.23
+(오전)
+1. Dacon
+   - 교차검증 cross validation(cv) : Training set과 Validation 을 여러번 나눈 뒤 모델의 학습을 검증하는 방식
+   - stratifiy : train_test_split 균일하게 데이터 배분
+  
+2. 참고 소스
+   - pip install -q konlpy : 조용히해!, 잡다한거 나올때 안나오게 하기
+  
+
+3. LSTM을 이용한 네이버 영화리뷰
+   - https://wikidocs.net/217687 참고
+   - labeling : 수작업함
+   - 토근화 : Okt
+
+4. GPT-2를 이용한 한국어 뉴스 긍정, 부정 감성 분류 --> Transformer 중의 일부
+   - https://wikidocs.net/217619 참고
    
+GPT를 사용하기 위해서는 토크나이저와 모델이 반드시 맵핑 관계여야만 합니다. 다시 말해 아래의 이름에 들어가는 모델이름은 반드시 동일해야 합니다.
+
+- AutoTokenizer.from_pretrained('모델이름')
+- AutoModelForSequenceClassification.from_pretrained("모델이름")
+
+토크나이저는 내부적으로 Vocabulary를 갖고 있어 정수 인코딩을 수행해주는 모듈입니다.
+
+# 한국어 GPT 중 하나인 'skt/kogpt2-base-v2'를 사용.
+tokenizer = AutoTokenizer.from_pretrained('skt/kogpt2-base-v2')
+
+토크나이저를 로드하고 .tokenize()를 이용하여 텍스트를 토큰화하고 토큰화 결과를 convert_tokens_to_ids()를 사용하여 정수 인코딩 할 수 있습니다. 이러한 정수 인코딩 과정을 data_to_tensor()라는 이름의 함수로 구현합니다. data_to_tensor() 함수는 정수 인코딩 뿐만 아니라 최대 길이를 입력받으면, 최대 길이까지 패딩(padding)을 수행하도록 하고, 어텐션 마스크(attention mask)도 계산하여 같이 반환하도록 합니다.
+
+   - 추론하기(inference) : 임의의 데이터에 대해서 예측 결과를 얻으려면 예측 함수를 만들어야 합니다. transformers 패키지에서는 이러한 과정을 자동으로 해주는 pipeline 도구를 제공합니다.                            현재 풀고자 하는 문제가 어떤 문제인지, 모델은 무엇인지, 토크나이저는 무엇인지를 알려주면 임의의 입력에 대해서 예측을 할 수 있게됩니다.
+
+(오후)
+5. Faiss와 SBERT를 이용한 시맨틱 검색기(Semantic Search) => 추천리스트
+   - https://wikidocs.net/217139
+   - SBERT?
+   - distilbert-base-nli-mean-tokens : Hugging Face의 Sentence Transformers 라이브러리에서 제공하는 사전 학습된 모델 중 하나입니다. 주로 문장 임베딩(sentence embedding)을 생성하                                         는데 사용되며, 특히 자연어 추론(NLI) 데이터셋으로 학습되었습니다.
+   - 코사인 유사도를 이용한 추천 시스템
+     -> https://wikidocs.net/217505
+
+==> 데이터의 순서가 있는 것을 처리하는 모델 : RNN, LSTM, GPT(Transformer) => [긍정, 부정]
+
+
+6. 챗봇실습
+   - HuggingFace API key 받기: https://sunshower99.tistory.com/30 참고
+   - 
+   - Use Gemini+RAG >>>> Gemini 키 발급: https://languagestory.tistory.com/315
+  
+
    
 
    
