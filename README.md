@@ -114,7 +114,11 @@ tokenizer = AutoTokenizer.from_pretrained('skt/kogpt2-base-v2')
   
 ==> context_docs 또는 prompt 사용
 
-2. 
+2. chatbot ==> chatbot 레지스토리 참고
+
+3. github 사용법 ==> git_tutorial1 참고
+   
+
 
    
 
