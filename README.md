@@ -103,6 +103,19 @@ tokenizer = AutoTokenizer.from_pretrained('skt/kogpt2-base-v2')
    - Use Gemini+RAG >>>> Gemini 키 발급: https://languagestory.tistory.com/315
   
 
+2025.01.24
+
+1. RAG(Retrieval-Augmented Generation) : 검색-증강 생성
+예시)
+   - context_docs = st.session_state.vectorstore.similarity_search(question, k=2)
+   - context_docs = "\n\n".join([f"{i+1}번째 문서:\n{doc.page_content}" for i, doc in enumerate(context_docs)])
+   - prompt = f"Context: {context_docs}\nQuestion: {question}\nAnswer in a complete sentence:"
+   - prompt = f"문맥: {context_docs}\n질문: {question}\n답변:"
+  
+==> context_docs 또는 prompt 사용
+
+2. 
+
    
 
    
