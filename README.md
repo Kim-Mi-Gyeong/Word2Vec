@@ -34,7 +34,7 @@
    stopwords = ['의','가','이','은','들','는','좀','잘','걍','과','도','를','으로','자','에','와','한','하다']
 
    tokenized_data = []
-   # merged_df['text'] => comments['Comment']
+   ( merged_df['text'] => comments['Comment'])
    for sentence in tqdm.tqdm(comments['Comment']):
        sentence = str(sentence).strip()
 
@@ -79,7 +79,7 @@ GPT를 사용하기 위해서는 토크나이저와 모델이 반드시 맵핑 �
 
 토크나이저는 내부적으로 Vocabulary를 갖고 있어 정수 인코딩을 수행해주는 모듈입니다.
 
-# 한국어 GPT 중 하나인 'skt/kogpt2-base-v2'를 사용.
+한국어 GPT 중 하나인 'skt/kogpt2-base-v2'를 사용.
 tokenizer = AutoTokenizer.from_pretrained('skt/kogpt2-base-v2')
 
 토크나이저를 로드하고 .tokenize()를 이용하여 텍스트를 토큰화하고 토큰화 결과를 convert_tokens_to_ids()를 사용하여 정수 인코딩 할 수 있습니다. 이러한 정수 인코딩 과정을 data_to_tensor()라는 이름의 함수로 구현합니다. data_to_tensor() 함수는 정수 인코딩 뿐만 아니라 최대 길이를 입력받으면, 최대 길이까지 패딩(padding)을 수행하도록 하고, 어텐션 마스크(attention mask)도 계산하여 같이 반환하도록 합니다.
